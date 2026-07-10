@@ -62,23 +62,27 @@ NetworkPerformance Monitoring\
 ## Remote deployment via ScreenConnect Backstage
 
 For pushing this out to a client machine over ScreenConnect instead of copying files
-by hand: open a **Backstage** session (or the Command toolbox) and paste a single
-command. ScreenConnect's service normally runs as `NT AUTHORITY\SYSTEM`, so this
-needs no separate elevation step:
+by hand: open a **Backstage** session and run
+[`scripts/Backstage-Bootstrap.bat`](scripts/Backstage-Bootstrap.bat). Backstage's
+command box runs through `cmd.exe`, and a raw multi-quoted PowerShell one-liner
+pasted directly into it doesn't parse reliably there — packaging it as a `.bat`
+file (uploaded via Backstage's file transfer, then run) is the version that
+actually works. ScreenConnect's service normally runs as `NT AUTHORITY\SYSTEM`,
+so no separate elevation step is needed either way.
 
-```powershell
-powershell -ExecutionPolicy Bypass -Command "iex (irm https://raw.githubusercontent.com/pcsknox/network-performance-monitor/master/scripts/Bootstrap-Remote.ps1)"
-```
+The `.bat` file downloads the repo, installs it to
+`C:\ProgramData\PCS\NetworkPerformanceMonitor`, fetches the Ookla CLI, runs one
+verification test, and registers the scheduled task — no manual steps on the
+remote end.
 
-That one command downloads the repo, installs it to `C:\ProgramData\PCS\NetworkPerformanceMonitor`,
-fetches the Ookla CLI, runs one verification test, and registers the scheduled task
-— no manual steps on the remote end. To use a non-default interval:
+If you need a non-default interval, or you're driving this from a context that's
+already PowerShell (not Backstage's cmd.exe box), call the underlying script directly:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -Command "& ([scriptblock]::Create((irm https://raw.githubusercontent.com/pcsknox/network-performance-monitor/master/scripts/Bootstrap-Remote.ps1))) -IntervalMinutes 15"
 ```
 
-Re-running the same command later (e.g. to push out an update) detects the existing
+Re-running either one later (e.g. to push out an update) detects the existing
 install, refreshes `scripts\` and `config\`, and leaves `data\speedtest_log.csv` and
 `bin\speedtest.exe` untouched.
 
