@@ -9,13 +9,13 @@
     needed for the scheduled task registration.
 
     Usage (paste as-is into a Backstage command box):
-      powershell -ExecutionPolicy Bypass -Command "iex (irm https://raw.githubusercontent.com/pcsknox/network-performance-monitor/main/scripts/Bootstrap-Remote.ps1)"
+      powershell -ExecutionPolicy Bypass -Command "iex (irm https://raw.githubusercontent.com/pcsknox/network-performance-monitor/master/scripts/Bootstrap-Remote.ps1)"
 
     Optional overrides, e.g. a different interval:
-      powershell -ExecutionPolicy Bypass -Command "& ([scriptblock]::Create((irm https://raw.githubusercontent.com/pcsknox/network-performance-monitor/main/scripts/Bootstrap-Remote.ps1))) -IntervalMinutes 15"
+      powershell -ExecutionPolicy Bypass -Command "& ([scriptblock]::Create((irm https://raw.githubusercontent.com/pcsknox/network-performance-monitor/master/scripts/Bootstrap-Remote.ps1))) -IntervalMinutes 15"
 #>
 param(
-    [string]$RepoZipUrl = 'https://github.com/pcsknox/network-performance-monitor/archive/refs/heads/main.zip',
+    [string]$RepoZipUrl = 'https://github.com/pcsknox/network-performance-monitor/archive/refs/heads/master.zip',
     [string]$InstallDir = 'C:\ProgramData\PCS\NetworkPerformanceMonitor',
     [int]$IntervalMinutes = 30,
     [string]$TaskName = 'NetworkPerformanceMonitor'

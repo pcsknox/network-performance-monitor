@@ -67,7 +67,7 @@ command. ScreenConnect's service normally runs as `NT AUTHORITY\SYSTEM`, so this
 needs no separate elevation step:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -Command "iex (irm https://raw.githubusercontent.com/pcsknox/network-performance-monitor/main/scripts/Bootstrap-Remote.ps1)"
+powershell -ExecutionPolicy Bypass -Command "iex (irm https://raw.githubusercontent.com/pcsknox/network-performance-monitor/master/scripts/Bootstrap-Remote.ps1)"
 ```
 
 That one command downloads the repo, installs it to `C:\ProgramData\PCS\NetworkPerformanceMonitor`,
@@ -75,7 +75,7 @@ fetches the Ookla CLI, runs one verification test, and registers the scheduled t
 — no manual steps on the remote end. To use a non-default interval:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -Command "& ([scriptblock]::Create((irm https://raw.githubusercontent.com/pcsknox/network-performance-monitor/main/scripts/Bootstrap-Remote.ps1))) -IntervalMinutes 15"
+powershell -ExecutionPolicy Bypass -Command "& ([scriptblock]::Create((irm https://raw.githubusercontent.com/pcsknox/network-performance-monitor/master/scripts/Bootstrap-Remote.ps1))) -IntervalMinutes 15"
 ```
 
 Re-running the same command later (e.g. to push out an update) detects the existing
