@@ -1,0 +1,8 @@
+{
+  "IntervalMinutes": 30,
+  "EnableFastComFallback": true,
+  "OoklaExeRelativePath": "bin\\speedtest.exe",
+  "DataDirRelativePath": "data",
+  "TaskName": "NetworkPerformanceMonitor",
+  "TimeoutSeconds": 45
+}

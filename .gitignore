@@ -1,0 +1,7 @@
+# Ookla Speedtest CLI - downloaded by Install-Prerequisites.ps1, not committed
+bin/*
+!bin/.gitkeep
+
+# Runtime output - CSV log and generated HTML report
+data/*
+!data/.gitkeep
